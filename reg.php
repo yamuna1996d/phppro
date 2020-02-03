@@ -19,13 +19,14 @@
         <td><input type="text" name="roll"></td>
     </tr>
     <tr>
-        <td>Admition Number</td>
+        <td>Admission Number</td>
         <td><input type="text" name="address"></td>
     </tr>
     <tr>
         <td>College</td>
         <td><input type="text" name="coll"></td>
     </tr>
+    
     <tr>
     <td>
     <Button class="btn btn-danger" type="submit" name="but">Submit</Button>
@@ -47,7 +48,15 @@ if(isset($_POST["but"])){
     $password="";
     $dbname="studentdb";
     $con=new mysqli($server,$dbusername,$password,$dbname);
-    $sql="NSERT INTO `students`(`name`, `rollNo`, `admissionNo`, `college`) VALUES ($n,$r,$a,$c)";
+    $sql="INSERT INTO `students`(`name`, `rollNo`, `admissionNo`, `college`) VALUES ('$n',$r,'$a','$c')";
+    $result= $con->query($sql);
+    if($result===TRUE){
+     echo "Successfuly inserted";
+    }
+    else{
+     echo "Error".$con->error;
+    }
+
     echo "<table class='table'><tr><td>Name :</td><td>$n</td></tr>
     <tr><td>Roll no :</td><td>$r</td></tr></tr>
     <tr><td>Admission no :</td><td>$a</td></tr>
